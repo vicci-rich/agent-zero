@@ -1,15 +1,15 @@
-# Deepest world knowledge on the roster - but ~94% "answer-anyway" hallucination
-# rate on AA-Omniscience, so it must NEVER be the final arbiter of facts. Its
-# outputs are always verified by QA / pinned to sources. Level-4 GPU-time: rationed.
-# Prefer swapping to nemotron-3-ultra if you need higher factual reliability.
+# Deepest world knowledge on the roster, 1M ctx. Its verbosity costs wall-clock,
+# not money - fine for async research. But ~94% "answer-anyway" hallucination
+# rate on AA-Omniscience means it must NEVER be the final arbiter of facts:
+# QA verifies, sources get pinned.
 model:
   chat:
     provider: ollama_cloud
     name: deepseek-v4-pro
     api_base: https://ollama.com
     ctx_length: 1000000
-    limit_requests: 5
+    limit_requests: 8
   utility:
     provider: ollama_cloud
-    name: gpt-oss:20b-cloud
+    name: nemotron-3-super
     api_base: https://ollama.com

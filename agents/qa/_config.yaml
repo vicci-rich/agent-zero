@@ -1,14 +1,15 @@
-# The verification gate. Deliberately a DIFFERENT model family from the engineers
-# so it does not share their blind spots. Highest non-hallucination score on the
-# roster -> the right temperament for a critic. US-permissive license.
+# The gate. Highest non-hallucination score on the roster (AA-Omniscience 78.7),
+# ~142 t/s with ~30% fewer tokens -> the gate never becomes the bottleneck.
+# Family-disjoint from every producer (GLM plans, Kimi codes, DeepSeek
+# researches), so it shares none of their blind spots.
 model:
   chat:
     provider: ollama_cloud
     name: nemotron-3-ultra
     api_base: https://ollama.com
     ctx_length: 262000
-    limit_requests: 6
+    limit_requests: 12
   utility:
     provider: ollama_cloud
-    name: gpt-oss:20b-cloud
+    name: nemotron-3-super
     api_base: https://ollama.com

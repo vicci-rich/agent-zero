@@ -1,13 +1,13 @@
-# Token-efficient long-horizon agentic executor with the best tool-routing on the
-# roster. Use it to drive MCP tools, A2A calls, browser and shell workflows.
+# Tool-runner: best tool-routing on the roster (MCP-Mark Verified 81.1%, above
+# Opus 4.8's 76.4%) and token-efficient on long-horizon tool chains.
 model:
   chat:
     provider: ollama_cloud
     name: kimi-k2.7-code
     api_base: https://ollama.com
     ctx_length: 256000
-    limit_requests: 8
+    limit_requests: 12
   utility:
     provider: ollama_cloud
-    name: gpt-oss:20b-cloud
+    name: nemotron-3-super
     api_base: https://ollama.com

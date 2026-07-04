@@ -1,14 +1,16 @@
-# Heavy dedicated coder for the hardest stories or whole-codebase changes.
-# Alt: swap name to minimax-m3:cloud when you need the full ~1M context to load an
-# entire codebase or when multimodal (image/video) input matters.
+# Escalation coder for the single hardest story: GLM-5.2 is #1 open on Arena's
+# Code Arena (~1595 Elo, 2nd overall) and leads open-weight SWE-bench Pro.
+# Verbose and slow - one story at a time, never the swarm. Shares the "GLM
+# seat" (one concurrency slot, time-shared) with the architect profile.
+# Alt: minimax-m3:cloud when the story needs multimodal input.
 model:
   chat:
     provider: ollama_cloud
-    name: qwen3-coder:480b-cloud
+    name: glm-5.2:cloud
     api_base: https://ollama.com
-    ctx_length: 256000
+    ctx_length: 1000000
     limit_requests: 8
   utility:
     provider: ollama_cloud
-    name: gpt-oss:120b-cloud
+    name: nemotron-3-super
     api_base: https://ollama.com

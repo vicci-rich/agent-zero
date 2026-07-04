@@ -1,14 +1,17 @@
-# The always-on router / PM (agent 0). It runs the hot delegation loop, so it must
-# be cheap and fast, NOT the verbose level-4 strategy model. It delegates hard
-# planning to the 'architect' profile instead of thinking expensively itself.
+# The ToT router (agent 0). It fires on every hop, so it needs the best
+# intelligence-per-active-param on the roster, not the biggest brain:
+# minimax-m3 = 9.8B active (cheapest frontier activation), independently
+# measured AA 44, ~1M ctx to hold whole-company state, native multimodal
+# (can route screenshots/diagrams). Dominates deepseek-v4-flash (13B active,
+# no third-party score) on every measured axis.
 model:
   chat:
     provider: ollama_cloud
-    name: gpt-oss:120b-cloud
+    name: minimax-m3:cloud
     api_base: https://ollama.com
-    ctx_length: 128000
-    limit_requests: 20
+    ctx_length: 512000         # RULER: only ~50-65% of advertised 1M is reliably usable
+    limit_requests: 30         # backpressure for the 10-slot queue, not budget
   utility:
     provider: ollama_cloud
-    name: gpt-oss:20b-cloud
+    name: nemotron-3-super
     api_base: https://ollama.com

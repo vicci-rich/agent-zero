@@ -1,13 +1,16 @@
-# Cheapest level-1 model. Runs constantly (memory writes, tagging, routing help)
-# and must never be the reason the weekly GPU-time budget runs out.
+# Memory & glue on the wall-clock king: nemotron-3-super, ~296 t/s (fastest on
+# the roster) and smarter than gpt-oss:120b (AA 36 vs 33). With no per-token
+# pricing there is no reason to run gpt-oss anywhere - speed is the new cheap.
+# Alt: deepseek-v4-flash (13B active, 1M ctx) if you want DeepSeek-family
+# knowledge in memory consolidation.
 model:
   chat:
     provider: ollama_cloud
-    name: gpt-oss:20b-cloud
+    name: nemotron-3-super
     api_base: https://ollama.com
-    ctx_length: 128000
-    limit_requests: 30
+    ctx_length: 512000
+    limit_requests: 60
   utility:
     provider: ollama_cloud
-    name: gpt-oss:20b-cloud
+    name: nemotron-3-super
     api_base: https://ollama.com
