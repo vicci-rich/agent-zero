@@ -83,6 +83,11 @@ def initialize_agent():
         # additional = {},
     )
 
+    # route the top-level agent to the model pinned by its profile (if the
+    # profile carries an agents/<profile>/_config.yaml); no-op otherwise
+    from python.helpers.agent_profile import apply_profile_model_config
+    apply_profile_model_config(config, config.profile)
+
     # update SSH and docker settings
     _set_runtime_config(config, current_settings)
 

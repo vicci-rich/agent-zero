@@ -1,0 +1,14 @@
+# The always-on router / PM (agent 0). It runs the hot delegation loop, so it must
+# be cheap and fast, NOT the verbose level-4 strategy model. It delegates hard
+# planning to the 'architect' profile instead of thinking expensively itself.
+model:
+  chat:
+    provider: ollama_cloud
+    name: gpt-oss:120b-cloud
+    api_base: https://ollama.com
+    ctx_length: 128000
+    limit_requests: 20
+  utility:
+    provider: ollama_cloud
+    name: gpt-oss:20b-cloud
+    api_base: https://ollama.com

@@ -1,0 +1,14 @@
+# The verification gate. Deliberately a DIFFERENT model family from the engineers
+# so it does not share their blind spots. Highest non-hallucination score on the
+# roster -> the right temperament for a critic. US-permissive license.
+model:
+  chat:
+    provider: ollama_cloud
+    name: nemotron-3-ultra
+    api_base: https://ollama.com
+    ctx_length: 262000
+    limit_requests: 6
+  utility:
+    provider: ollama_cloud
+    name: gpt-oss:20b-cloud
+    api_base: https://ollama.com

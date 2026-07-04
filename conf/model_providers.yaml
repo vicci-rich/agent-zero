@@ -41,6 +41,14 @@ chat:
   ollama:
     name: Ollama
     litellm_provider: ollama
+  ollama_cloud:
+    name: Ollama Cloud
+    # Hosted large models (glm-5.2:cloud, qwen3-coder:480b-cloud, gpt-oss:*-cloud,
+    # deepseek-v4-pro, kimi-k2.7-code, nemotron-3-ultra, minimax-m3 ...).
+    # Auth: put your key in .env as OLLAMA_CLOUD_API_KEY (or API_KEY_OLLAMA_CLOUD).
+    litellm_provider: ollama_chat
+    kwargs:
+      api_base: https://ollama.com
   openai:
     name: OpenAI
     litellm_provider: openai

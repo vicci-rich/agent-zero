@@ -1,5 +1,6 @@
 from agent import Agent, UserMessage
 from python.helpers.tool import Tool, Response
+from python.helpers.agent_profile import apply_profile_model_config
 from initialize import initialize_agent
 
 
@@ -18,6 +19,10 @@ class Delegation(Tool):
             agent_profile = kwargs.get("profile")
             if agent_profile:
                 config.profile = agent_profile
+
+            # route this subordinate to the model pinned by its profile (if any),
+            # so each specialist role can run on its own Ollama Cloud model
+            apply_profile_model_config(config, config.profile)
 
             # crate agent
             sub = Agent(self.agent.number + 1, config, self.agent.context)
