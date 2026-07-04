@@ -43,8 +43,8 @@ cost is off the table - nemotron-3-super is both smarter and faster.
 
 | Slots | Profile              | Model                | Why (active params / measured intelligence / speed) |
 |-------|----------------------|----------------------|------|
-| 1     | `orchestrator` (a0)  | `minimax-m3:cloud`   | The ToT router. Best intelligence-per-active-param: 9.8B active, AA v4.1 = 44 (measured), ~1M ctx for whole-company state, multimodal. Dominates deepseek-v4-flash (13B active, unmeasured) on every measured axis |
-| 1     | `architect` + `principal-engineer` (time-shared GLM seat) | `glm-5.2:cloud` | CEO seat + hardest-story coder. #1 open (AA 51), same ~1M ctx as M3 but +7 intelligence; #1 open on Code Arena (~1595 Elo). Verbose -> called, never looped |
+| 1     | `orchestrator` (a0)  | `minimax-m3`         | The ToT router. Best intelligence-per-active-param: 9.8B active, AA v4.1 = 44 (measured), ~1M ctx for whole-company state, multimodal. Dominates deepseek-v4-flash (13B active, unmeasured) on every measured axis |
+| 1     | `architect` + `principal-engineer` (time-shared GLM seat) | `glm-5.2` | CEO seat + hardest-story coder. #1 open (AA 51), same ~1M ctx as M3 but +7 intelligence; #1 open on Code Arena (~1595 Elo). Verbose -> called, never looped |
 | 4     | `engineer` swarm     | `kimi-k2.7-code`     | Most verified-stories-per-slot-hour: frontier coder, ~30% fewer thinking tokens, MCP-Mark 81.1% |
 | 1     | `executor`           | `kimi-k2.7-code`     | Best tool-routing on the roster (MCP-Mark 81.1% > Opus 4.8's 76.4%) |
 | 1     | `qa`                 | `nemotron-3-ultra`   | The gate: best non-hallucination (AA-Omniscience 78.7), 142 t/s, -30% tokens, family-disjoint from every producer |
@@ -55,9 +55,27 @@ Every profile's utility model is `nemotron-3-super` for the same reason.
 `limit_requests` caps are queue backpressure (protecting the 10-slot ceiling),
 not budget rationing.
 
-> Model tags reflect the **July 2026** Ollama Cloud roster and are provisional.
-> Confirm live tags with `ollama ls` / `ollama.com/search?c=cloud` and adjust the
-> `name:` fields as the roster churns - retargeting a role is a one-line edit.
+### Roster verification (July 4, 2026)
+
+Model names are verified against the live `ollama.com/search?c=cloud` catalog:
+every seat's model exists and each catalog description matches its seat -
+minimax-m3 ("Coding & Agentic Frontier. 1M context window. Native
+Multimodality"), nemotron-3-super ("maximum compute efficiency and accuracy for
+complex multi-agent applications"), nemotron-3-ultra ("high-throughput reasoning
+and long-running agent workflows"), kimi-k2.7-code ("roughly 30% lower
+thinking-token usage").
+
+Naming: configs use bare catalog names because Agent Zero calls
+`https://ollama.com` directly. The `:cloud` / `-cloud` tag suffixes only matter
+when routing through a *local* Ollama daemon that offloads to the cloud - if you
+switch to that setup, append the cloud tag (e.g. `glm-5.2:cloud`).
+
+Watchlist (in the live catalog but not yet independently benchmarked):
+`qwen3-coder-next` (agentic-coding successor to qwen3-coder), `devstral-2` 123B
+and `devstral-small-2` 24B (Mistral's tool-driven software-engineering agents),
+`nemotron-3-nano` 4b/30b (potential even-cheaper glue), `deepseek-v3.2`. If
+independent numbers land for these, the swarm and glue seats are the ones to
+re-evaluate. Retargeting any role is a one-line `name:` edit.
 
 ## Activate it
 

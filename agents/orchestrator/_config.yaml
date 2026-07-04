@@ -7,7 +7,7 @@
 model:
   chat:
     provider: ollama_cloud
-    name: minimax-m3:cloud
+    name: minimax-m3
     api_base: https://ollama.com
     ctx_length: 512000         # RULER: only ~50-65% of advertised 1M is reliably usable
     limit_requests: 30         # backpressure for the 10-slot queue, not budget

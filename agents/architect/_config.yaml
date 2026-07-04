@@ -6,7 +6,7 @@
 model:
   chat:
     provider: ollama_cloud
-    name: glm-5.2:cloud
+    name: glm-5.2
     api_base: https://ollama.com
     ctx_length: 1000000
     limit_requests: 10
