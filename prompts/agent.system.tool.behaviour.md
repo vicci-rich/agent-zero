@@ -1,6 +1,7 @@
 ### behaviour_adjustment:
 update agent behaviour per user request
 write instructions to add or remove to adjustments arg
+to wipe all custom rules and restore defaults, set adjustments to "reset"
 usage:
 ~~~json
 {

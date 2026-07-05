@@ -39,6 +39,15 @@ Extending Agent Zero to interact with external APIs is possible by creating cust
 
 - **Terminal commands not executing:** Ensure the Docker container is running and properly configured.  Check SSH settings if applicable. Check if the Docker image is updated by removing it from Docker Desktop app, and subsequently pulling it again.
 
+- **Agent ignores your task / keeps acting on a "rule" you never set (persists after deleting chats):** Agent Zero stores a persistent behaviour ruleset at `memory/<subdir>/behaviour.md` (default subdir: `default`) and injects it at the top of the system prompt on every message. It lives outside the chat, so deleting chats, projects or plugins does not clear it - a bad rule keeps steering every session. Symptoms include the agent dismissing a real task ("no task was sent"), refusing steps, or following an instruction you didn't give this session.
+  - **Fix from within a chat:** tell the agent to reset its behaviour (it will call `behaviour_adjustment` with `"reset"`), or call the tool yourself with `adjustments: "reset"`.
+  - **Fix from the shell (container):** inspect then remove the file, and restart:
+    ```bash
+    cat memory/default/behaviour.md         # see the offending rule(s)
+    rm memory/default/behaviour.md          # revert to built-in defaults
+    ```
+    (Replace `default` with your configured memory subdir if you changed it. A healthy file, if present, is just a short bullet list.)
+
 * **Error Messages:** Pay close attention to the error messages displayed in the Web UI or terminal.  They often provide valuable clues for diagnosing the issue. Refer to the specific error message in online searches or community forums for potential solutions.
 
 * **Performance Issues:** If Agent Zero is slow or unresponsive, it might be due to resource limitations, network latency, or the complexity of your prompts and tasks, especially when using local models.
